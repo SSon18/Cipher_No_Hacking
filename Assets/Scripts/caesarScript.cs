@@ -79,7 +79,7 @@ public class PuzzleSystem : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void  Update()
     {
         // Check if the timer is running and update it
         if (timerRunning)
@@ -189,7 +189,7 @@ public class PuzzleSystem : MonoBehaviour
 
         ciphertextText.text = "Ciphertext: " + ciphertext;
 
-        // Optionally, reset the timer for the new ciphertext
+        // Optioqnally, reset the timer for the new ciphertext
         timer = timeLimit;
         timerRunning = true;
 
