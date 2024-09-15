@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,10 +22,11 @@ public class PuzzleSystem : MonoBehaviour
     private TMP_Text feedbackText;
 
     [SerializeField]
-    private TMP_Text timerText; // Reference to the timer text UI element
+    private TMP_Text timerText;
 
     [SerializeField]
     private TMP_Text missionText;
+
     [SerializeField]
     [TextArea]
     private string[] missionWords;
@@ -34,67 +34,108 @@ public class PuzzleSystem : MonoBehaviour
     // Puzzle Configuration
     [SerializeField]
     private int shift = 3; // Shift for Caesar Cipher
-    [SerializeField]
-    private string plaintext = "Antivirus"; // Original text
 
+    // Use a dictionary to store plaintext and description pairs
+    private Dictionary<string, string> plaintextDescriptions;
+
+    private string plaintext;
     private string ciphertext;
-    private string previousCiphertext; // Store the previous ciphertext
+    private string previousCiphertext;
     private bool puzzleActivated;
+    private int currentPlaintextIndex;
 
     // Timer Configuration
     [SerializeField]
-    private float timeLimit = 30.0f; // Time limit in seconds
+    private float timeLimit = 30.0f;
     private float timer;
     private bool timerRunning;
 
-    // Possible plaintexts to randomize when time runs out
+    // Possible plaintexts and their descriptions
     [SerializeField]
     private string[] possiblePlaintexts;
 
-    // Flag to check if the puzzle has been solved
+    [SerializeField]
+    private string[] descriptions;
+
+    // Correct answer UI panel
+    [SerializeField]
+    private GameObject correctAnswerPanel;
+
+    [SerializeField]
+    private TMP_Text correctAnswerWordText;
+
+    [SerializeField]
+    [TextArea]
+    private TMP_Text correctAnswerDescriptionText;
+
+    [SerializeField]
+    private Button proceedButton; // Reference to the Proceed button
+
     private bool puzzleSolved = false;
+
+    // Player Movement Script
+    [SerializeField]
+    private NewBehaviourScript playerMovementScript;
 
     // Reference to the next level door (ensure it's assigned in the Inspector)
     [SerializeField]
     private GameObject nextLevelDoor; // Object for the door
 
-    // Reference to Player Movement Script (Ensure the player is assigned in the Inspector)
-    [SerializeField]
-    private NewBehaviourScript playerMovementScript;
-
     private void Start()
     {
-        // Encrypt the plaintext to generate ciphertext
-        ciphertext = Encrypt(plaintext, shift);
-        previousCiphertext = ciphertext; // Initialize previousCiphertext
+        // Set up the dictionary of plaintext and descriptions
+        SetupPlaintextDescriptions();
+
+        // Randomize the first plaintext and its corresponding ciphertext
+        RandomizePlaintext();
 
         // Set up initial UI states
         puzzleCanvas.SetActive(false);
         submitButton.onClick.AddListener(OnSubmit);
-
-        // Initialize mission text with the first mission
-        if (missionWords.Length > 0)
-        {
-            DisplayMissionText(missionWords[0]);
-        }
+        proceedButton.onClick.AddListener(OnProceed); // Add listener for Proceed button
     }
 
-    private void  Update()
+    private void Update()
     {
-        // Check if the timer is running and update it
         if (timerRunning)
         {
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                timer = 0; // Ensure timer doesn't go below zero
+                timer = 0;
                 timerRunning = false;
                 ChangeCiphertext();
             }
-
-            // Update the timer display
             UpdateTimerDisplay();
         }
+    }
+
+    // Pair plaintexts and descriptions in a dictionary
+    private void SetupPlaintextDescriptions()
+    {
+        plaintextDescriptions = new Dictionary<string, string>();
+
+        // Ensure that possiblePlaintexts and descriptions arrays have the same length
+        if (possiblePlaintexts.Length != descriptions.Length)
+        {
+            Debug.LogError("Possible plaintexts and descriptions arrays must have the same length.");
+            return;
+        }
+
+        for (int i = 0; i < possiblePlaintexts.Length; i++)
+        {
+            plaintextDescriptions.Add(possiblePlaintexts[i], descriptions[i]);
+        }
+    }
+
+    private void RandomizePlaintext()
+    {
+        currentPlaintextIndex = Random.Range(0, possiblePlaintexts.Length);
+        plaintext = possiblePlaintexts[currentPlaintextIndex];
+        ciphertext = Encrypt(plaintext, shift);
+
+        // Update UI
+        ciphertextText.text = "Ciphertext: " + ciphertext;
     }
 
     public void ActivatePuzzle()
@@ -104,66 +145,47 @@ public class PuzzleSystem : MonoBehaviour
             puzzleCanvas.SetActive(true);
             ciphertextText.text = "Ciphertext: " + ciphertext;
 
-            // Start the timer
             timer = timeLimit;
             timerRunning = true;
 
-            // Ensure input field is interactable and visible
             answerInputField.interactable = true;
             answerInputField.gameObject.SetActive(true);
-
-            // Optionally, set focus to the input field
             answerInputField.Select();
-            answerInputField.ActivateInputField(); // Allows typing
+            answerInputField.ActivateInputField();
 
-            // Disable player movement
             if (playerMovementScript != null)
             {
-                playerMovementScript.enabled = false;
+                playerMovementScript.enabled = false; // Disable player movement
             }
+
+            // Display mission text when the puzzle begins
+            DisplayMissionText();
+        }
+    }
+
+    private void DisplayMissionText()
+    {
+        if (missionText != null && missionWords.Length > 0)
+        {
+            // For example, displaying the first mission word
+            missionText.text = "Mission: " + missionWords[0];
         }
     }
 
     public void OnSubmit()
     {
-        string userAnswer = answerInputField.text.Trim(); // Trim spaces
-
-        Debug.Log("Submitted answer: " + userAnswer);
-        Debug.Log("Expected plaintext: " + plaintext);
+        string userAnswer = answerInputField.text.Trim();
 
         if (userAnswer.Equals(plaintext, System.StringComparison.OrdinalIgnoreCase))
         {
             DisplayFeedback("Correct!");
-            puzzleSolved = true; // Mark the puzzle as solved
-            timerRunning = false; // Stop the timer
-            puzzleCanvas.SetActive(false); // Hide the puzzle UI
+            puzzleSolved = true;
+            timerRunning = false;
+            puzzleCanvas.SetActive(false);
 
-            // Enable player movement after puzzle is solved
-            if (playerMovementScript != null)
-            {
-                playerMovementScript.enabled = true;
-            }
+            ShowCorrectAnswerPanel(plaintext);
 
-            // Enable the nextLevelDoor's trigger
-            if (nextLevelDoor != null)
-            {
-                Collider2D doorCollider = nextLevelDoor.GetComponent<Collider2D>();
-
-                if (doorCollider != null)
-                {
-                    doorCollider.enabled = true;
-                    doorCollider.isTrigger = true; // Ensure the collider is a trigger
-                    Debug.Log("nextLevelDoor collider enabled and set as trigger.");
-                }
-                else
-                {
-                    Debug.LogWarning("No Collider2D found on nextLevelDoor.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("nextLevelDoor reference is missing.");
-            }
+            EnableNextLevelDoorTrigger();
         }
         else
         {
@@ -171,34 +193,57 @@ public class PuzzleSystem : MonoBehaviour
         }
     }
 
+    private void EnableNextLevelDoorTrigger()
+    {
+        if (nextLevelDoor != null)
+        {
+            BoxCollider2D doorCollider = nextLevelDoor.GetComponent<BoxCollider2D>();
+
+            if (doorCollider != null)
+            {
+                doorCollider.isTrigger = true; // Ensure the collider is a trigger
+                Debug.Log("nextLevelDoor collider enabled and set as trigger.");
+            }
+            else
+            {
+                Debug.LogWarning("No BoxCollider2D found on nextLevelDoor.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("nextLevelDoor reference is missing.");
+        }
+    }
+
     private void ChangeCiphertext()
     {
-        // Store the current ciphertext as previous
         previousCiphertext = ciphertext;
-
-        // Ensure a new ciphertext is different from the previous one
-        string newPlaintext;
-        do
-        {
-            newPlaintext = possiblePlaintexts[Random.Range(0, possiblePlaintexts.Length)];
-            ciphertext = Encrypt(newPlaintext, shift);
-        } while (ciphertext == previousCiphertext);
-
-        // Update the plaintext variable to reflect the new value
-        plaintext = newPlaintext;
+        RandomizePlaintext();
 
         ciphertextText.text = "Ciphertext: " + ciphertext;
-
-        // Optioqnally, reset the timer for the new ciphertext
         timer = timeLimit;
         timerRunning = true;
+    }
 
-        // Update the mission text based on a new element or logic
-        DisplayMissionText(missionWords[Random.Range(0, missionWords.Length)]);
+    private void ShowCorrectAnswerPanel(string decipheredWord)
+    {
+        if (correctAnswerPanel != null && correctAnswerWordText != null && correctAnswerDescriptionText != null)
+        {
+            string description = "";
+            if (plaintextDescriptions.TryGetValue(decipheredWord, out description))
+            {
+                correctAnswerWordText.text = "Deciphered Word: " + decipheredWord;
+                correctAnswerDescriptionText.text = description;
+            }
+            else
+            {
+                correctAnswerWordText.text = "Deciphered Word: " + decipheredWord;
+                correctAnswerDescriptionText.text = "No description available.";
+                Debug.LogWarning("No description available for: " + decipheredWord);
+            }
 
-        // Debugging
-        Debug.Log("New plaintext: " + plaintext);
-        Debug.Log("New ciphertext: " + ciphertext);
+            correctAnswerPanel.SetActive(true);
+        }
     }
 
     private void DisplayFeedback(string message)
@@ -209,19 +254,11 @@ public class PuzzleSystem : MonoBehaviour
         }
     }
 
-    private void DisplayMissionText(string message)
-    {
-        if (missionText != null)
-        {
-            missionText.text = message;
-        }
-    }
-
     private void UpdateTimerDisplay()
     {
         if (timerText != null)
         {
-            timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString(); // Display time rounded up
+            timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString();
         }
     }
 
@@ -242,5 +279,20 @@ public class PuzzleSystem : MonoBehaviour
             }
         }
         return new string(buffer);
+    }
+
+    // Function to handle the Proceed button click
+    public void OnProceed()
+    {
+        if (correctAnswerPanel != null)
+        {
+            correctAnswerPanel.SetActive(false);
+        }
+
+        // Re-enable player movement when proceeding
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true;
+        }
     }
 }
