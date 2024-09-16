@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
+    // DIALOGUE SCRIPT FOR CAESAR PUZZLE!!!
+    // DIALOGUE SCRIPT FOR CAESAR PUZZLE!!!
+    // DIALOGUE SCRIPT FOR CAESAR PUZZLE!!!
+
     // UI References for Dialogue
     [SerializeField]
     private GameObject dialogueCanvas;
@@ -64,7 +68,7 @@ public class DialogueSystem : MonoBehaviour
             if (step >= speaker.Length) // Check if dialogue is over
             {
                 dialogueCanvas.SetActive(false);
-                //step = 0; // repeat dialogue
+                //step = 0; || repeat dialogue
 
                 // Activate puzzle system once dialogue ends
                 puzzleSystem.ActivatePuzzle();
@@ -97,6 +101,7 @@ public class DialogueSystem : MonoBehaviour
             {
                 dialogueActivated = false;
                 dialogueCanvas.SetActive(false);
+                step = 0;
             }
         }
     }

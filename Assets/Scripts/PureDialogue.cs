@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class PureDialogue : MonoBehaviour
 {
+    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
+    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
+    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
+
     // UI References for Dialogue
     [SerializeField]
     private GameObject dialogueCanvas2;
@@ -104,12 +108,14 @@ public class PureDialogue : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Hide the dialogue canvas if the player exits the trigger zone
-            if (dialogueCanvas2.activeInHierarchy)
+            // Check if the dialogueCanvas2 object still exists before accessing it
+            if (dialogueCanvas2 != null && dialogueCanvas2.activeInHierarchy)
             {
                 dialogueCanvas2.SetActive(false);
             }
             dialogueActivated2 = false;
+            step = 0;
         }
     }
+
 }

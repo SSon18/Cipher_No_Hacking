@@ -3,8 +3,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PuzzleSystem : MonoBehaviour
+public class PuzzleSystem : MonoBehaviour 
 {
+    // SCRIPT FOR CAESAR CIPHER!!!
+    // SCRIPT FOR CAESAR CIPHER!!!
+    // SCRIPT FOR CAESAR CIPHER!!!
+
     // UI References for Puzzle
     [SerializeField]
     private GameObject puzzleCanvas;

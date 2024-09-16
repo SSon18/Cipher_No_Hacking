@@ -12,6 +12,7 @@ public class PuzzleActivator : MonoBehaviour
             {
                 puzzleSystem.ActivatePuzzle();
             }
+            // NOT USING THIS SCRPIT!!!!!!!!!
         }
     }
 }
