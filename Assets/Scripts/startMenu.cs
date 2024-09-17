@@ -14,4 +14,10 @@ public class startMenu : MonoBehaviour
     public void backBTN() {
         SceneManager.LoadScene(1);
     }
+    public void viewAlbumBTN() {
+        SceneManager.LoadScene(8);
+    }
+    public void doneBTN() {
+        SceneManager.LoadScene(5);
+    }
 }

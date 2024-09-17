@@ -12,12 +12,20 @@ public class Door : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (collision.transform.position.x < transform.position.x)
+            if (cam != null)
             {
-                cam.MoveToNewRoom(nextRoom);
+                if (collision.transform.position.x < transform.position.x)
+                {
+                    cam.MoveToNewRoom(nextRoom);
+                }
+                else
+                {
+                    cam.MoveToNewRoom(previousRoom);
+                }
             }
-            else {
-                cam.MoveToNewRoom(previousRoom);
+            else
+            {
+                Debug.LogError("Camera reference is missing in the Door script.");
             }
         }
     }
