@@ -20,4 +20,9 @@ public class startMenu : MonoBehaviour
     public void doneBTN() {
         SceneManager.LoadScene(5);
     }
+    public void OnViewAlbumButtonClick()
+    {
+        // Use SceneManager to load the Album scene
+        SceneManager.LoadScene(8);
+    }
 }

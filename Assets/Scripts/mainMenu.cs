@@ -12,8 +12,8 @@ public class mainMenu : MonoBehaviour
     public void settingsBTN() {
         
     }
-    public void albumBTN() { 
-        
+    public void albumBTN() {
+        SceneManager.LoadScene(8);
     }
     public void tutorialBTN() { 
         

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PuzzleSystem : MonoBehaviour 
 {
@@ -84,6 +85,25 @@ public class PuzzleSystem : MonoBehaviour
     // Reference to the next level door (ensure it's assigned in the Inspector)
     [SerializeField]
     private GameObject nextLevelDoor; // Object for the door
+
+    // NEW CODES
+
+    private List<DecipheredWord> decipheredWords = new List<DecipheredWord>();
+
+
+    [System.Serializable]
+    public class DecipheredWord
+    {
+        public string word;
+        public string description;
+
+        public DecipheredWord(string word, string description)
+        {
+            this.word = word;
+            this.description = description;
+        }
+    }
+
 
     private void Start()
     {
@@ -187,8 +207,13 @@ public class PuzzleSystem : MonoBehaviour
             timerRunning = false;
             puzzleCanvas.SetActive(false);
 
-            ShowCorrectAnswerPanel(plaintext);
+            // Add deciphered word to the list
+            decipheredWords.Add(new DecipheredWord(plaintext, plaintextDescriptions[plaintext]));
 
+            // Save deciphered words after solving the puzzle
+            SaveDecipheredWords();
+
+            ShowCorrectAnswerPanel(plaintext);
             EnableNextLevelDoorTrigger();
         }
         else
@@ -196,6 +221,10 @@ public class PuzzleSystem : MonoBehaviour
             DisplayFeedback("Try again!");
         }
     }
+
+
+
+
 
     private void EnableNextLevelDoorTrigger()
     {
@@ -299,4 +328,32 @@ public class PuzzleSystem : MonoBehaviour
             playerMovementScript.enabled = true;
         }
     }
+    // When viewing the album, ensure that words are saved properly
+    public void OnViewAlbumButtonClick()
+    {
+        // Ensure the words are saved before switching scenes
+        SaveDecipheredWords();
+
+        // Load the Album scene
+        SceneManager.LoadScene(8);
+    }
+    // This method saves the deciphered words to PlayerPrefs
+    private void SaveDecipheredWords()
+    {
+        // Convert the deciphered words to JSON and store in PlayerPrefs
+        string json = JsonUtility.ToJson(new WordsContainer { words = decipheredWords });
+        PlayerPrefs.SetString("DecipheredWords", json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Deciphered words saved: " + json);
+    }
+
+
+    // Helper class to serialize the list of words
+    [System.Serializable]
+    private class WordsContainer
+    {
+        public List<DecipheredWord> words;
+    }
+
 }
