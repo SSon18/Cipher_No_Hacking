@@ -18,4 +18,7 @@ public class mainMenu : MonoBehaviour
     public void tutorialBTN() { 
         
     }
+    public void closeAlbum() {
+        SceneManager.LoadScene(1);
+    }
 }

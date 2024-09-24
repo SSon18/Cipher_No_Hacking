@@ -62,14 +62,21 @@ public class DialogueSystem : MonoBehaviour
     private void Update()
     {
         // Prevent dialogue interaction if the game is paused (Time.timeScale == 0)
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0)
+            return;
 
+        // Check if the puzzle is currently active to prevent "Talk" input from interfering
+        if (puzzleSystem != null && puzzleSystem.puzzleCanvas.activeSelf)
+        {
+            return; // If the puzzle is active, exit the method and don't process "Talk" input
+        }
+
+        // Handle "Talk" button press when the puzzle is NOT active
         if (Input.GetButtonDown("Talk") && dialogueActivated)
         {
             if (step >= speaker.Length) // Check if dialogue is over
             {
                 dialogueCanvas.SetActive(false);
-                //step = 0; || repeat dialogue
 
                 // Activate puzzle system once dialogue ends
                 puzzleSystem.ActivatePuzzle();
@@ -81,9 +88,14 @@ public class DialogueSystem : MonoBehaviour
                 dialogueText.text = dialogueWords[step];
                 portraitImage.sprite = portrait[step];
                 step++;
+
+                // Clear input field and feedback when advancing the dialogue
+                puzzleSystem.answerInputField.text = ""; // Clear input field
+                puzzleSystem.feedbackText.text = ""; // Clear any previous feedback
             }
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -106,6 +118,22 @@ public class DialogueSystem : MonoBehaviour
             }
         }
     }
-    
 
+    // Method to reset dialogue state (to be called when puzzle is complete)
+    public void ResetDialogue()
+    {
+        step = 0; // Reset the step counter for new dialogue
+        dialogueActivated = false; // Deactivate dialogue to allow re-triggering
+        dialogueCanvas.SetActive(false); // Hide the dialogue canvas
+    }
+
+    // Method to handle actions after puzzle is completed
+    public void OnPuzzleComplete()
+    {
+        // Reset the dialogue for future interactions
+        ResetDialogue();
+
+        // If any other actions are required when puzzle completes, add them here
+        Debug.Log("Puzzle completed and dialogue reset.");
+    }
 }
