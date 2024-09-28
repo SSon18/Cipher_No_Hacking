@@ -3,6 +3,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Transactions;
+using System;
 
 public class PuzzleSystem : MonoBehaviour
 {
@@ -90,27 +92,57 @@ public class PuzzleSystem : MonoBehaviour
     [SerializeField]
     private DialogueSystem dialogueSystem; // Reference to the dialogue system
 
+    [SerializeField]
+    public GameObject albumPanel;
+    private BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
+
+
     // Class to represent a deciphered word with its description
     [System.Serializable]
-    public class DecipheredWord
+    public class DecipheredWord : IEquatable<DecipheredWord>
     {
-        public string word; // The deciphered word
-        public string description; // Description of the deciphered word
+        public string word;
+        public string description;
 
         public DecipheredWord(string word, string description)
         {
-            this.word = word; // Initialize the word
-            this.description = description; // Initialize the description
+            this.word = word;
+            this.description = description;
+        }
+
+        // Implement Equals and GetHashCode to compare words properly
+        public bool Equals(DecipheredWord other)
+        {
+            if (other == null) return false;
+            return this.word.Equals(other.word, System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        public override int GetHashCode()
+        {
+            return word.ToLower().GetHashCode();
         }
     }
+    private SpriteRenderer doorSpriteRenderer; // Declare a SpriteRenderer reference
 
     private void Start()
     {
+        LoadDecipheredWords();
+        doorSpriteRenderer = nextLevelDoor.GetComponent<SpriteRenderer>();
+        if (doorSpriteRenderer != null)
+        {
+            doorSpriteRenderer.enabled = false; // Hide the sprite initially
+        }
+        else
+        {
+            Debug.LogWarning("No SpriteRenderer found on nextLevelDoor during Start."); // Log warning if missing
+        }
+
         // Set up the dictionary of plaintext and descriptions
         SetupPlaintextDescriptions();
 
         // Randomize the first plaintext and its corresponding ciphertext
         RandomizePlaintext();
+        //LoadPuzzleState(); // PUZZLE SAVER !!!!!!!!!!!!!!!!!
 
         // Set up initial UI states
         puzzleCanvas.SetActive(false); // Hide the puzzle canvas at the start
@@ -124,9 +156,28 @@ public class PuzzleSystem : MonoBehaviour
             if (dialogueSystem == null)
             {
                 Debug.LogError("DialogueSystem not found in the scene!");
+            } 
+
+        }
+    }
+    private void SavePuzzleState()
+    {
+        PlayerPrefs.SetInt("PuzzleSolved_" + gameObject.name, puzzleSolved ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    private void LoadPuzzleState()
+    {
+        if (PlayerPrefs.HasKey("PuzzleSolved_" + gameObject.name))
+        {
+            puzzleSolved = PlayerPrefs.GetInt("PuzzleSolved_" + gameObject.name) == 1;
+
+            if (puzzleSolved && puzzleCollider != null)
+            {
+                puzzleCollider.enabled = false; // Disable the collider if the puzzle is already solved
             }
         }
     }
+
 
     private void Update()
     {
@@ -176,7 +227,8 @@ public class PuzzleSystem : MonoBehaviour
         SetupPlaintextDescriptions();
 
         // Randomly select a plaintext and encrypt it to create a ciphertext
-        currentPlaintextIndex = Random.Range(0, possiblePlaintexts.Length);
+        currentPlaintextIndex = UnityEngine.Random.Range(0, possiblePlaintexts.Length);
+
         plaintext = possiblePlaintexts[currentPlaintextIndex];
         ciphertext = Encrypt(plaintext, shift); // Encrypt the selected plaintext
 
@@ -233,10 +285,17 @@ public class PuzzleSystem : MonoBehaviour
         // Check if the user's answer matches the plaintext
         if (userAnswer.Equals(plaintext, System.StringComparison.OrdinalIgnoreCase))
         {
-            DisplayFeedback("Correct!"); // Show correct feedback
+            DisplayFeedback(FeedbackMessage.Correct); // Show correct feedback
             puzzleSolved = true; // Mark the puzzle as solved
+            SavePuzzleState(); // Save the puzzle state after solving
             timerRunning = false; // Stop the timer
             puzzleCanvas.SetActive(false); // Hide the puzzle canvas
+
+            // Disable the collider after the puzzle is solved
+            if (puzzleCollider != null)
+            {
+                puzzleCollider.enabled = false; // Disable the puzzle collider
+            }
 
             // Check if the word is already in the list to avoid duplicates
             if (!decipheredWords.Exists(dw => dw.word.Equals(plaintext, System.StringComparison.OrdinalIgnoreCase)))
@@ -251,7 +310,7 @@ public class PuzzleSystem : MonoBehaviour
         }
         else
         {
-            DisplayFeedback("Try again!"); // Show incorrect feedback
+            DisplayFeedback(FeedbackMessage.Incorrect); // Show incorrect feedback
         }
     }
 
@@ -267,6 +326,17 @@ public class PuzzleSystem : MonoBehaviour
             {
                 doorCollider.isTrigger = true; // Ensure the collider is a trigger
                 Debug.Log("nextLevelDoor collider enabled and set as trigger."); // Log success
+
+                // Enable the SpriteRenderer to show the sprite
+                if (doorSpriteRenderer != null)
+                {
+                    doorSpriteRenderer.enabled = true; // Show the sprite
+                    Debug.Log("nextLevelDoor sprite renderer enabled."); // Log success
+                }
+                else
+                {
+                    Debug.LogWarning("No SpriteRenderer found on nextLevelDoor."); // Log warning if no SpriteRenderer
+                }
             }
             else
             {
@@ -346,13 +416,22 @@ public class PuzzleSystem : MonoBehaviour
             Debug.LogError("Correct answer panel or text fields are not set up properly!"); // Log error if setup is incorrect
         }
     }
-
-    private void DisplayFeedback(string message)
+    public enum FeedbackMessage
     {
-        // Display feedback message to the user
-        if (feedbackText != null)
+        Correct,
+        Incorrect
+    }
+
+    private void DisplayFeedback(FeedbackMessage message)
+    {
+        switch (message)
         {
-            feedbackText.text = message; // Update the feedback text
+            case FeedbackMessage.Correct:
+                feedbackText.text = "Correct!";
+                break;
+            case FeedbackMessage.Incorrect:
+                feedbackText.text = "Try again!";
+                break;
         }
     }
 
@@ -421,23 +500,114 @@ public class PuzzleSystem : MonoBehaviour
         SceneManager.LoadScene(8); // Switch to the album scene
     }
 
-    // This method saves the deciphered words to PlayerPrefs
-    private void SaveDecipheredWords()
+    public void AlbumButtonIG()
     {
-        // Clear existing deciphered words from PlayerPrefs
-        LoadDecipheredWords();
+        LoadDecipheredWords();  // Load the saved words
+        DisplayAlbumWords();    // Display the words in the album
+        correctAnswerPanel.SetActive(false);
+        albumPanel.SetActive(true);
+    }
+    public void ProceedButtonIG() {
+        albumPanel.SetActive(false);
+        // Hide the correct answer panel when proceeding
+        if (correctAnswerPanel != null)
+        {
+            correctAnswerPanel.SetActive(false);
+        }
 
-        // Convert the updated deciphered words list to JSON and store in PlayerPrefs
-        string json = JsonUtility.ToJson(new WordsContainer { words = new List<DecipheredWord>(new HashSet<DecipheredWord>(decipheredWords)) }); // Remove duplicates
-        PlayerPrefs.SetString("DecipheredWords", json); // Save to PlayerPrefs
-        PlayerPrefs.Save(); // Ensure data is written
+        // Re-enable player movement when proceeding
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true; // Enable player movement
+        }
 
-        Debug.Log("Deciphered words saved: " + json); // Log saved words
+        // Reset puzzle activation state
+        puzzleActivated = false; // Set this back to false to indicate the puzzle is no longer active
+
+        // Optionally, reset dialogue for the next puzzle
+        if (dialogueSystem != null)
+        {
+            dialogueSystem.ResetDialogue(); // Reset the dialogue state
+        }
+    }
+    [SerializeField]
+    private Transform wordListContainer;  // Container where deciphered words will be displayed
+
+    [SerializeField]
+    private GameObject wordItemPrefab;    // Prefab for displaying each word in the album
+
+    [SerializeField]
+    private TMP_Text descriptionText; // Text field to display the description
+
+    public void ShowDescription(string description)
+    {
+        if (descriptionText != null)
+        {
+            descriptionText.text = description;  // Update the description text
+        }
+    }
+
+    public void DisplayAlbumWords()
+    {
+        // Clear existing word items first
+        foreach (Transform child in wordListContainer)
+        {
+            Destroy(child.gameObject);  // Destroy each existing child to avoid duplicates
+        }
+
+        // Instantiate a new word item for each deciphered word
+        foreach (var word in decipheredWords)
+        {
+            GameObject wordItem = Instantiate(wordItemPrefab, wordListContainer);  // Create a new word item in the container
+
+            TMP_Text wordText = wordItem.GetComponentInChildren<TMP_Text>();  // Get the TMP_Text component in the prefab
+            if (wordText != null)
+            {
+                wordText.text = word.word;  // Set the word text
+            }
+
+            // Show description when the word is clicked
+            Button wordButton = wordItem.GetComponent<Button>();
+            if (wordButton != null)
+            {
+                string description = word.description;  // Copy the description for the button
+                wordButton.onClick.AddListener(() => ShowDescription(description));  // Set button click action
+            }
+        }
     }
 
 
+    // This method saves the deciphered words to PlayerPrefs
+    public void SaveDecipheredWords()
+    {
+        // Load existing deciphered words from PlayerPrefs if they exist
+        string existingJson = PlayerPrefs.GetString("DecipheredWords", string.Empty);
+        List<DecipheredWord> existingWords = new List<DecipheredWord>();
+
+        if (!string.IsNullOrEmpty(existingJson))
+        {
+            // Deserialize existing words
+            WordsContainer existingContainer = JsonUtility.FromJson<WordsContainer>(existingJson);
+            if (existingContainer != null)
+            {
+                existingWords = existingContainer.words;
+            }
+        }
+
+        // Use a HashSet to merge existing words with new ones (to avoid duplicates)
+        HashSet<DecipheredWord> mergedWords = new HashSet<DecipheredWord>(existingWords);
+        mergedWords.UnionWith(decipheredWords);  // Add new deciphered words
+
+        // Save the merged list of deciphered words back to PlayerPrefs
+        string newJson = JsonUtility.ToJson(new WordsContainer { words = new List<DecipheredWord>(mergedWords) });
+        PlayerPrefs.SetString("DecipheredWords", newJson);
+        PlayerPrefs.Save();
+    }
+
+
+
     // This method loads existing deciphered words from PlayerPrefs and updates the list
-    private void LoadDecipheredWords()
+    public void LoadDecipheredWords()
     {
         // Check if deciphered words are already saved in PlayerPrefs
         if (PlayerPrefs.HasKey("DecipheredWords"))

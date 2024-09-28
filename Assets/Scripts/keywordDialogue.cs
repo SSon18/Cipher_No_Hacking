@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class DialogueSystem : MonoBehaviour
+public class keywordDialogue : MonoBehaviour
 {
     // UI References for Dialogue
     [SerializeField]
@@ -37,7 +37,7 @@ public class DialogueSystem : MonoBehaviour
 
     // Reference to the Puzzle System
     [SerializeField]
-    private PuzzleSystem puzzleSystem;
+    private KeywordCipherSystem keyWord;
 
     private void Start()
     {
@@ -45,11 +45,11 @@ public class DialogueSystem : MonoBehaviour
         dialogueCanvas.SetActive(false);
 
         // Ensure PuzzleSystem is assigned correctly
-        if (puzzleSystem == null)
+        if (keyWord == null)
         {
-            puzzleSystem = FindObjectOfType<PuzzleSystem>();
+            keyWord = FindObjectOfType<KeywordCipherSystem>();
 
-            if (puzzleSystem == null)
+            if (keyWord == null)
             {
                 Debug.LogError("PuzzleSystem not found in the scene!");
             }
@@ -63,7 +63,7 @@ public class DialogueSystem : MonoBehaviour
             return;
 
         // Check if the puzzle is currently active to prevent "Talk" input from interfering
-        if (puzzleSystem != null && puzzleSystem.puzzleCanvas.activeSelf)
+        if (keyWord != null && keyWord.keywordPuzzleCanvas.activeSelf)
         {
             return; // If the puzzle is active, exit the method and don't process "Talk" input
         }
@@ -76,7 +76,7 @@ public class DialogueSystem : MonoBehaviour
                 dialogueCanvas.SetActive(false);
 
                 // Activate puzzle system once dialogue ends
-                puzzleSystem.ActivatePuzzle();
+                keyWord.ActivatePuzzle();
             }
             else
             {
@@ -87,8 +87,8 @@ public class DialogueSystem : MonoBehaviour
                 step++;
 
                 // Clear input field and feedback when advancing the dialogue
-                puzzleSystem.answerInputField.text = ""; // Clear input field
-                puzzleSystem.feedbackText.text = ""; // Clear any previous feedback
+                keyWord.answerInputField.text = ""; // Clear input field
+                keyWord.feedbackText.text = ""; // Clear any previous feedback
             }
         }
     }

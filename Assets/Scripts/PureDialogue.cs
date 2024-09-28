@@ -6,10 +6,6 @@ using UnityEngine.UI;
 
 public class PureDialogue : MonoBehaviour
 {
-    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
-    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
-    // PURE DIALOGUE ONLY FOR NPC PURPOSES || DIRECTIONS || HINT!!!
-
     // UI References for Dialogue
     [SerializeField]
     private GameObject dialogueCanvas2;
@@ -36,6 +32,7 @@ public class PureDialogue : MonoBehaviour
 
     private bool dialogueActivated2;
     private int step;
+    private bool isDisplaying; // New flag to check if displaying dialogue
 
     // Reference to PlayerMovement and Animator
     [SerializeField]
@@ -57,7 +54,7 @@ public class PureDialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Talk") && dialogueActivated2)
+        if (Input.GetButtonDown("Talk") && dialogueActivated2 && !isDisplaying) // Check if not displaying
         {
             if (step >= speaker2.Length) // Check if dialogue is over
             {
@@ -79,11 +76,25 @@ public class PureDialogue : MonoBehaviour
             {
                 dialogueCanvas2.SetActive(true);
                 speakerText2.text = speaker2[step];
-                dialogueText2.text = dialogueWords2[step];
+                StartCoroutine(DisplayDialogue(dialogueWords2[step])); // Start letter-by-letter display
                 portraitImage2.sprite = portrait2[step];
                 step++;
             }
         }
+    }
+
+    private IEnumerator DisplayDialogue(string dialogue)
+    {
+        isDisplaying = true; // Set the flag to true when starting the display
+        dialogueText2.text = ""; // Clear previous text
+
+        foreach (char letter in dialogue)
+        {
+            dialogueText2.text += letter; // Add one letter at a time
+            yield return new WaitForSeconds(0.05f); // Adjust the speed here (0.05 seconds per letter)
+        }
+
+        isDisplaying = false; // Set the flag to false when finished displaying
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -117,5 +128,4 @@ public class PureDialogue : MonoBehaviour
             step = 0;
         }
     }
-
 }
