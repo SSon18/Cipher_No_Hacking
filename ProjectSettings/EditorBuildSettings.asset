@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Levels/Level3.unity
     guid: 78150b51b1ec7ef4a889b5e4d45adeef
   - enabled: 1
+    path: Assets/Levels/CastleEntry.unity
+    guid: b1b20408a29ef384881006aec5e93d84
+  - enabled: 1
     path: Assets/Levels/Album.unity
     guid: 18aab480c17b4334797a5022b4cb3ceb
   m_configObjects:

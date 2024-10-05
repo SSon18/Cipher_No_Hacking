@@ -39,6 +39,10 @@ public class PureDialogue : MonoBehaviour
     private NewBehaviourScript playerMovement; // Reference to your PlayerMovement script
 
     private Animator playerAnimator; // Reference to the player's Animator
+    private SpriteRenderer notifRenderer;
+    private GameObject notif;
+    [SerializeField]
+    private GameObject interactable;
 
     private void Start()
     {
@@ -61,7 +65,11 @@ public class PureDialogue : MonoBehaviour
                 dialogueCanvas2.SetActive(false);
                 step = 0; // Optionally reset dialogue to start from the beginning
                 dialogueActivated2 = false; // Optionally disable dialogue activation
-
+                notifRenderer = interactable.GetComponent<SpriteRenderer>();
+                if (notifRenderer != null)
+                {
+                    notifRenderer.enabled = false; // Hide the sprite initially
+                }
                 // Re-enable player movement and animation
                 if (playerMovement != null)
                 {
@@ -102,16 +110,6 @@ public class PureDialogue : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             dialogueActivated2 = true;
-
-            // Disable player movement and animation when dialogue starts
-            if (playerMovement != null)
-            {
-                playerMovement.enabled = false;
-            }
-            if (playerAnimator != null)
-            {
-                playerAnimator.SetBool("run", false); // Disable running animation
-            }
         }
     }
 

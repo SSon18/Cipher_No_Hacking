@@ -96,6 +96,11 @@ public class PuzzleSystem : MonoBehaviour
     public GameObject albumPanel;
     private BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
 
+    private SpriteRenderer notifRenderer;
+    private GameObject notif;
+    [SerializeField]
+    private GameObject interactable;
+
 
     // Class to represent a deciphered word with its description
     [System.Serializable]
@@ -213,12 +218,7 @@ public class PuzzleSystem : MonoBehaviour
             plaintextDescriptions.Add(possiblePlaintexts[i], descriptions[i]);
         }
 
-        // Debug log to confirm the setup
-        Debug.Log("Plaintext Descriptions Set Up:");
-        foreach (var item in plaintextDescriptions)
-        {
-            Debug.Log($"Word: {item.Key}, Description: {item.Value}"); // Log each pair
-        }
+      
     }
 
     private void RandomizePlaintext()
@@ -295,6 +295,11 @@ public class PuzzleSystem : MonoBehaviour
             if (puzzleCollider != null)
             {
                 puzzleCollider.enabled = false; // Disable the puzzle collider
+            }
+            notifRenderer = interactable.GetComponent<SpriteRenderer>();
+            if (notifRenderer != null)
+            {
+                notifRenderer.enabled = false; // Hide the sprite initially
             }
 
             // Check if the word is already in the list to avoid duplicates

@@ -39,6 +39,8 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField]
     private PuzzleSystem puzzleSystem;
 
+    
+
     private void Start()
     {
         // Set up initial UI states
