@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 247306968}
   m_Layer: 0
   m_Name: nextLevelDoor 1
-  m_TagString: Untagged
+  m_TagString: Door1
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4038,8 +4038,8 @@ GameObject:
   - component: {fileID: 772820311}
   - component: {fileID: 772820312}
   m_Layer: 0
-  m_Name: flower (1)
-  m_TagString: Untagged
+  m_Name: puzzle2
+  m_TagString: Puzzle2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4633,8 +4633,8 @@ GameObject:
   - component: {fileID: 871205461}
   - component: {fileID: 871205462}
   m_Layer: 0
-  m_Name: flower
-  m_TagString: Untagged
+  m_Name: puzzle1
+  m_TagString: Puzzle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12546,7 +12546,7 @@ GameObject:
   - component: {fileID: 2078543399}
   m_Layer: 0
   m_Name: nextLevelDoor 2
-  m_TagString: Untagged
+  m_TagString: Door2
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12770,10 +12770,35 @@ PrefabInstance:
       propertyPath: possiblePlaintexts.Array.data[4]
       value: test
       objectReference: {fileID: 0}
+    - target: {fileID: 4387955281565221821, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_Name
+      value: interactable 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387955281565221821, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: interactable2
+      objectReference: {fileID: 0}
     - target: {fileID: 5652966358353890397, guid: cd89c6c549ad74c4fb82ff837a3d053a,
         type: 3}
       propertyPath: m_Name
       value: CaesarPuzzleHandler 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652966358353890397, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Puzzle2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767222196728924641, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_Name
+      value: PuzzleSystemCaesar 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767222196728924641, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Puzzle2
       objectReference: {fileID: 0}
     - target: {fileID: 6989014333266594204, guid: cd89c6c549ad74c4fb82ff837a3d053a,
         type: 3}
@@ -13421,10 +13446,30 @@ PrefabInstance:
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 23687759}
+    - target: {fileID: 4387955281565221821, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_Name
+      value: interactable 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387955281565221821, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: interactable1
+      objectReference: {fileID: 0}
     - target: {fileID: 5652966358353890397, guid: cd89c6c549ad74c4fb82ff837a3d053a,
         type: 3}
       propertyPath: m_Name
       value: CaesarPuzzleHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652966358353890397, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Puzzle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767222196728924641, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Puzzle1
       objectReference: {fileID: 0}
     - target: {fileID: 6989014333266594204, guid: cd89c6c549ad74c4fb82ff837a3d053a,
         type: 3}

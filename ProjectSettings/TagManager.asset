@@ -9,6 +9,12 @@ TagManager:
   - Wall
   - UI
   - NPC
+  - Puzzle1
+  - Puzzle2
+  - Door1
+  - Door2
+  - interactable1
+  - interactable2
   layers:
   - Default
   - TransparentFX
