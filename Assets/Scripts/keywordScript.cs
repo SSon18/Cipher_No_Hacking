@@ -19,6 +19,7 @@ public class KeywordCipherSystem : MonoBehaviour
     [SerializeField] private TMP_Text correctAnswerWordText; // Text to display the correct answer
     [SerializeField] private TMP_Text correctAnswerDescriptionText; // Text to display the correct answer's description
     [SerializeField] private Button proceedButton; // Proceed button for next steps
+    
 
     // Cipher Configuration
     [SerializeField] private string keyword = "KEYWORD"; // The keyword for the cipher
@@ -29,6 +30,9 @@ public class KeywordCipherSystem : MonoBehaviour
     private string currentCiphertext; // Current ciphertext shown to the player
     private bool puzzleSolved = false; // Track if puzzle has been solved
     private int currentPlaintextIndex; // Index for current plaintext
+    [SerializeField]
+    [TextArea]
+    private string[] missionWords;
 
     // Timer Settings
     [SerializeField] private float timeLimit = 30.0f; // Time limit for solving the puzzle
@@ -49,6 +53,9 @@ public class KeywordCipherSystem : MonoBehaviour
     private bool puzzleActivated; // Indicates if the puzzle is activated
     [SerializeField]
     private GameObject wordItemPrefab;    // Prefab for displaying each word in the album
+    [SerializeField]
+    private GameObject interactable;
+
 
     [SerializeField]
     private TMP_Text descriptionText; // Text field to display the description
@@ -80,6 +87,7 @@ public class KeywordCipherSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadPuzzleState();
         LoadDecipheredWords();
         doorSpriteRenderer = nextLevelDoor.GetComponent<SpriteRenderer>();
         if (doorSpriteRenderer != null)
@@ -97,6 +105,98 @@ public class KeywordCipherSystem : MonoBehaviour
         {
             dialogueSystem = FindObjectOfType<keywordDialogue>();
         }
+    }
+    private void SavePuzzleState()
+    {
+        // Unique key for this puzzle
+        string puzzleKey = "PuzzleSolved_" + gameObject.name;
+
+        // Save the puzzle solved state
+        PlayerPrefs.SetInt(puzzleKey, puzzleSolved ? 1 : 0);
+
+        // Save the next level door state (enabling isTrigger)
+        if (nextLevelDoor != null)
+        {
+            string doorKey = "NextLevelDoor_" + nextLevelDoor.name;
+            bool doorTriggerEnabled = nextLevelDoor.GetComponent<Collider2D>().isTrigger;
+            PlayerPrefs.SetInt(doorKey, doorTriggerEnabled ? 1 : 0);
+        }
+
+        // Save the interactable state (active/inactive)
+        if (interactable != null)
+        {
+            string interactableKey = "Interactable_" + gameObject.name;
+            PlayerPrefs.SetInt(interactableKey, interactable.activeSelf ? 1 : 0); // Save the active state
+        }
+
+        PlayerPrefs.Save(); // Ensure everything is saved
+    }
+
+    private void LoadPuzzleState()
+    {
+        // Unique key for this puzzle
+        string puzzleKey = "PuzzleSolved_" + gameObject.name;
+
+        // Load the puzzle solved state
+        if (PlayerPrefs.HasKey(puzzleKey))
+        {
+            puzzleSolved = PlayerPrefs.GetInt(puzzleKey) == 1;
+
+            // Disable the collider of this specific puzzle if solved
+            if (puzzleSolved && puzzleCollider != null)
+            {
+                puzzleCollider.enabled = false; // Disable only this puzzle's collider
+            }
+
+            // Load and apply the next level door's state (isTrigger)
+            if (nextLevelDoor != null)
+            {
+                string doorKey = "NextLevelDoor_" + nextLevelDoor.name;
+                if (PlayerPrefs.HasKey(doorKey))
+                {
+                    bool doorTriggerEnabled = PlayerPrefs.GetInt(doorKey) == 1;
+                    nextLevelDoor.GetComponent<Collider2D>().isTrigger = doorTriggerEnabled;
+                }
+            }
+
+            // Load and apply the interactable's state
+            if (interactable != null)
+            {
+                string interactableKey = "Interactable_" + gameObject.name;
+                if (PlayerPrefs.HasKey(interactableKey))
+                {
+                    bool interactableActive = PlayerPrefs.GetInt(interactableKey) == 1;
+                    interactable.SetActive(interactableActive); // Set the active state from PlayerPrefs
+                }
+            }
+
+            // Disable dialogue interaction for this puzzle if solved
+            if (puzzleSolved && dialogueSystem != null)
+            {
+                dialogueSystem.enabled = false; // Disable dialogue interaction for this specific puzzle
+            }
+        }
+    }
+
+    public void SolvePuzzle()
+    {
+        // Set puzzle as solved and save the state
+        puzzleSolved = true;
+
+        // Hide the interactable GameObject when the puzzle is solved
+        if (interactable != null)
+        {
+            interactable.SetActive(false); // Hide the interactable
+        }
+
+        // Enable the isTrigger on the next level door when the puzzle is solved
+        if (nextLevelDoor != null)
+        {
+            nextLevelDoor.GetComponent<Collider2D>().isTrigger = true;
+        }
+
+        // Save the updated puzzle state and door state
+        SavePuzzleState(); // Call save after updating states
     }
     public void LoadDecipheredWords()
     {
@@ -329,9 +429,11 @@ public class KeywordCipherSystem : MonoBehaviour
 
     private void DisplayMissionText()
     {
-        if (missionText != null && possiblePlaintexts.Length > 0)
+        // Display the mission text based on the mission words
+        if (missionText != null && missionWords.Length > 0)
         {
-            missionText.text = "Mission: Decipher the text!";
+            // For example, displaying the first mission word
+            missionText.text = "Mission: " + missionWords[0];
         }
     }
 
@@ -361,6 +463,7 @@ public class KeywordCipherSystem : MonoBehaviour
         if (userAnswer == currentPlaintext.ToUpper())
         {
             puzzleSolved = true;
+            SavePuzzleState();
             timerRunning = false;
             feedbackText.text = "Correct!";
             ShowCorrectAnswerPanel(currentPlaintext);
@@ -373,6 +476,7 @@ public class KeywordCipherSystem : MonoBehaviour
                 decipheredWords.Add(new DecipheredWord(currentPlaintext, plaintextDescriptions[currentPlaintext]));
                 SaveDecipheredWords();
             }
+            SolvePuzzle();
         }
         else
         {

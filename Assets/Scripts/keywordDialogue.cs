@@ -58,6 +58,16 @@ public class keywordDialogue : MonoBehaviour
 
     private void Update()
     {
+        // Check for input to trigger dialogue
+        if (dialogueActivated && Input.GetKeyDown(KeyCode.E)) // Only interact when inside the collider
+        {
+            if (dialogueCanvas != null)
+            {
+                dialogueCanvas.SetActive(true);
+                Debug.Log("Dialogue started.");
+                // Handle dialogue logic here...
+            }
+        }
         // Prevent dialogue interaction if the game is paused (Time.timeScale == 0)
         if (Time.timeScale == 0)
             return;
@@ -111,7 +121,8 @@ public class keywordDialogue : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            dialogueActivated = true;
+            dialogueActivated = true; // Activate dialogue when entering the collider
+            Debug.Log("Player entered the dialogue trigger zone.");
         }
     }
 
@@ -119,14 +130,15 @@ public class keywordDialogue : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            // Check if the dialogueCanvas is still available and active
+            dialogueActivated = false; // Deactivate dialogue when leaving the collider
+            Debug.Log("Player exited the dialogue trigger zone.");
+
+            // Deactivate dialogueCanvas if the player is no longer in the trigger zone
             if (dialogueCanvas != null && dialogueCanvas.activeInHierarchy)
             {
-                dialogueActivated = false;
                 dialogueCanvas.SetActive(false);
-                step = 0;
+                step = 0; // Reset step or dialogue progress
             }
-
         }
     }
 

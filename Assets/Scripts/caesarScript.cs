@@ -94,14 +94,13 @@ public class PuzzleSystem : MonoBehaviour
 
     [SerializeField]
     public GameObject albumPanel;
-    private BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
+    [SerializeField]
+    public BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
 
     private SpriteRenderer notifRenderer;
     private GameObject notif;
     [SerializeField]
     private GameObject interactable;
-
-
     // Class to represent a deciphered word with its description
     [System.Serializable]
     public class DecipheredWord : IEquatable<DecipheredWord>
