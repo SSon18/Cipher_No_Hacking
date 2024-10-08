@@ -252,7 +252,7 @@ TextureImporter:
         width: 133
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,6 +260,48 @@ TextureImporter:
       bones: []
       spriteID: a396b5f52fbf0f24993d98c34b8c8ad1
       internalID: -1465167887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_8
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 287
+        width: 85
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9a79a2ddd475c4a86baf5be41f1aee
+      internalID: -1326346530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_9
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 17
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b406cd67fbf494eba69d75bb57491e
+      internalID: 265796746
       vertices: []
       indices: 
       edges: []
@@ -283,6 +325,8 @@ TextureImporter:
       walls_5: 1933654409
       walls_6: 403031709
       walls_7: -1465167887
+      walls_8: -1326346530
+      walls_9: 265796746
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

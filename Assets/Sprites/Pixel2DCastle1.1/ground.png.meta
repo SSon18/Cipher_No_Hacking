@@ -210,7 +210,7 @@ TextureImporter:
         width: 30
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,6 +218,69 @@ TextureImporter:
       bones: []
       spriteID: 526d3ae99583895488c69d863ad1c59f
       internalID: -1488105293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 115
+        width: 56
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d8be5a4fd43c144a9ac4076c677131
+      internalID: 932716586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 46
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d3b2ff8ca80a64482b01515019621b
+      internalID: 1454111001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e700802fecb5d5a428f6712e61a38385
+      internalID: 301038740
       vertices: []
       indices: 
       edges: []
@@ -239,6 +302,9 @@ TextureImporter:
       ground_3: -1113880932
       ground_4: -1285769144
       ground_5: -1488105293
+      ground_6: 932716586
+      ground_7: 1454111001
+      ground_8: 301038740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
