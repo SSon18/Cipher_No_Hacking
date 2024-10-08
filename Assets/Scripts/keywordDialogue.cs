@@ -68,6 +68,16 @@ public class keywordDialogue : MonoBehaviour
                 // Handle dialogue logic here...
             }
         }
+        // Check for input to trigger dialogue
+        if (dialogueActivated && Input.GetKeyDown(KeyCode.E)) // Only interact when inside the collider
+        {
+            if (dialogueCanvas != null)
+            {
+                dialogueCanvas.SetActive(true);
+                Debug.Log("Dialogue started.");
+                // Handle dialogue logic here...
+            }
+        }
         // Prevent dialogue interaction if the game is paused (Time.timeScale == 0)
         if (Time.timeScale == 0)
             return;

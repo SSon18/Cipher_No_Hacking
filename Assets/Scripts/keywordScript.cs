@@ -45,7 +45,7 @@ public class KeywordCipherSystem : MonoBehaviour
     [SerializeField] private GameObject nextLevelDoor; // Object for the door leading to the next level
     private SpriteRenderer doorSpriteRenderer; // Declare a SpriteRenderer reference
     private PuzzleSystem puzzleSystem;
-    private BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
+    [SerializeField] private BoxCollider2D puzzleCollider; // Assuming you are using a BoxCollider2D
     private List<DecipheredWord> decipheredWords = new List<DecipheredWord>();
     private string plaintext; // The current plaintext to solve
     [SerializeField]
@@ -475,6 +475,11 @@ public class KeywordCipherSystem : MonoBehaviour
             {
                 decipheredWords.Add(new DecipheredWord(currentPlaintext, plaintextDescriptions[currentPlaintext]));
                 SaveDecipheredWords();
+            }
+            // Disable the collider after the puzzle is solved
+            if (puzzleCollider != null)
+            {
+                puzzleCollider.enabled = false; // Disable the puzzle collider
             }
             SolvePuzzle();
         }

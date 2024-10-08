@@ -13,7 +13,7 @@ public class mainMenu : MonoBehaviour
         
     }
     public void albumBTN() {
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene(12);
     }
     public void tutorialBTN() { 
         

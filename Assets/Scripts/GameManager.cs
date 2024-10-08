@@ -21,12 +21,6 @@ public class GameManager : MonoBehaviour
         string completedPuzzles = string.Join(",", completedPuzzleIndices); // Convert list to string
         PlayerPrefs.SetString("CompletedPuzzles", completedPuzzles);
 
-        // Save the player's position
-        Vector3 playerPosition = player.transform.position;
-        PlayerPrefs.SetFloat("PlayerPosX", playerPosition.x);
-        PlayerPrefs.SetFloat("PlayerPosY", playerPosition.y);
-        PlayerPrefs.SetFloat("PlayerPosZ", playerPosition.z);
-
         PlayerPrefs.Save(); // Ensure the PlayerPrefs are saved
         Debug.Log("Game progress saved.");
     }
@@ -47,8 +41,7 @@ public class GameManager : MonoBehaviour
                 string[] puzzleIndices = savedPuzzles.Split(',');
                 foreach (string index in puzzleIndices)
                 {
-                    int puzzleIndex;
-                    if (int.TryParse(index, out puzzleIndex))
+                    if (int.TryParse(index, out int puzzleIndex))
                     {
                         completedPuzzleIndices.Add(puzzleIndex); // Rebuild the list
                     }
@@ -76,18 +69,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("New game started.");
     }
 
-    // This method is called after the scene is loaded
-    private void OnLevelWasLoaded(int level)
+    private void Start()
     {
-        // If player position data exists, load the player's position
-        if (PlayerPrefs.HasKey("PlayerPosX"))
-        {
-            float x = PlayerPrefs.GetFloat("PlayerPosX");
-            float y = PlayerPrefs.GetFloat("PlayerPosY");
-            float z = PlayerPrefs.GetFloat("PlayerPosZ");
+        // Set the player's position at the spawn point when the scene starts
+        SetPlayerSpawnPosition();
+    }
 
-            player.transform.position = new Vector3(x, y, z); // Set the player's position
-            Debug.Log("Player position loaded.");
+    private void SetPlayerSpawnPosition()
+    {
+        // Find the spawn point in the current scene
+        GameObject spawnPoint = GameObject.Find("PlayerSpawn");
+        if (spawnPoint != null && player != null)
+        {
+            player.transform.position = spawnPoint.transform.position; // Set the player's position
+            Debug.Log("Player positioned at spawn point: " + spawnPoint.transform.position);
         }
     }
 }
