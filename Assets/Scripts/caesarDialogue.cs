@@ -38,9 +38,7 @@ public class DialogueSystem : MonoBehaviour
     // Reference to the Puzzle System
     [SerializeField]
     private PuzzleSystem puzzleSystem;
-
-    
-
+ 
     private void Start()
     {
         // Set up initial UI states
@@ -82,7 +80,7 @@ public class DialogueSystem : MonoBehaviour
 
         // Handle "Talk" button press when the puzzle is NOT active
         if (Input.GetButtonDown("Talk") && dialogueActivated && !isDisplaying) // Check if not displaying
-        {
+        {     
             if (step >= speaker.Length) // Check if dialogue is over
             {
                 dialogueCanvas.SetActive(false);

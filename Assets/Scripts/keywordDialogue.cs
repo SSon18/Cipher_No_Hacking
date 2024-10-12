@@ -97,6 +97,7 @@ public class keywordDialogue : MonoBehaviour
 
                 // Activate puzzle system once dialogue ends
                 keyWord.ActivatePuzzle();
+
             }
             else
             {

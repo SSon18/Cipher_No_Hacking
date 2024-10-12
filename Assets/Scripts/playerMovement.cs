@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
@@ -34,9 +34,9 @@ public class NewBehaviourScript : MonoBehaviour
             // Jump();
         }
 
-        // Setting animator parameters
-        anim.SetBool("run", horizontalInput != 0);
-        anim.SetBool("onGround", grounded);
+        //// Setting animator parameters
+        //anim.SetBool("run", horizontalInput != 0);
+        //anim.SetBool("onGround", grounded);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

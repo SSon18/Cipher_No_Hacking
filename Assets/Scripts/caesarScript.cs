@@ -324,19 +324,12 @@ public class PuzzleSystem : MonoBehaviour
             ciphertextText.text = "Ciphertext: " + ciphertext; // Display the ciphertext
             timer = timeLimit; // Set the timer to the limit
             timerRunning = true; // Start the timer
-
             // Setup input field
             answerInputField.interactable = true; // Enable input field
             answerInputField.gameObject.SetActive(true); // Activate the input field
             answerInputField.Select(); // Select the input field
             answerInputField.ActivateInputField(); // Activate the input field for user input
-
-            // Disable player movement
-            if (playerMovementScript != null)
-            {
-                playerMovementScript.enabled = false; // Disable player movement
-            }
-
+            playerMovementScript.enabled = false; // Disable player movement
             // Display mission text when the puzzle begins
             DisplayMissionText(); // Show the mission text
         }

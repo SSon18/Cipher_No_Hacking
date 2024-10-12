@@ -24,31 +24,6 @@ namespace SupanthaPaul
 		{
 			// Idle & Running animation
 			m_anim.SetFloat(Move, Mathf.Abs(m_rb.velocity.x));
-
-			// Jump state (handles transitions to falling/jumping)
-			float verticalVelocity = m_rb.velocity.y;
-			m_anim.SetFloat(JumpState, verticalVelocity);
-
-			// Jump animation
-			if (!m_controller.isGrounded && !m_controller.actuallyWallGrabbing)
-			{
-				m_anim.SetBool(IsJumping, true);
-			}
-			else
-			{
-				m_anim.SetBool(IsJumping, false);
-			}
-
-			if(!m_controller.isGrounded && m_controller.actuallyWallGrabbing)
-			{
-				m_anim.SetBool(WallGrabbing, true);
-			} else
-			{
-				m_anim.SetBool(WallGrabbing, false);
-			}
-
-			// dash animation
-			m_anim.SetBool(IsDashing, m_controller.isDashing);
 		}
 	}
 }
