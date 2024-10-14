@@ -15,6 +15,9 @@ public class PuzzleSystem : MonoBehaviour
     public GameObject puzzleCanvas; // The main canvas for the puzzle UI
 
     [SerializeField]
+    public GameObject bookAlbumCanvas;
+
+    [SerializeField]
     private TMP_Text ciphertextText; // Text display for the ciphertext
 
     [SerializeField]
@@ -321,6 +324,7 @@ public class PuzzleSystem : MonoBehaviour
             puzzleActivated = true; // Set this to true to indicate the puzzle is active
             SetupPlaintextDescriptions(); // Ensure the descriptions are reset for the new puzzle
             puzzleCanvas.SetActive(true); // Show the puzzle canvas
+            bookAlbumCanvas.SetActive(false);
             ciphertextText.text = "Ciphertext: " + ciphertext; // Display the ciphertext
             timer = timeLimit; // Set the timer to the limit
             timerRunning = true; // Start the timer
@@ -360,6 +364,7 @@ public class PuzzleSystem : MonoBehaviour
             SavePuzzleState(); // Save the puzzle state after solving
             timerRunning = false; // Stop the timer
             puzzleCanvas.SetActive(false); // Hide the puzzle canvas
+            bookAlbumCanvas.SetActive(true);
 
             // Disable the collider after the puzzle is solved
             if (puzzleCollider != null)
@@ -392,7 +397,7 @@ public class PuzzleSystem : MonoBehaviour
     }
 
 
-    private void EnableNextLevelDoorTrigger()
+    public void EnableNextLevelDoorTrigger()
     {
         // Enable the next level door trigger
         if (nextLevelDoor != null)
@@ -467,6 +472,7 @@ public class PuzzleSystem : MonoBehaviour
 
     private void ShowCorrectAnswerPanel(string decipheredWord)
     {
+        bookAlbumCanvas.SetActive(false);
         // Show the correct answer panel with the deciphered word
         ResetCorrectAnswerPanel(); // Reset the panel before displaying new content
 
@@ -544,6 +550,7 @@ public class PuzzleSystem : MonoBehaviour
     // Function to handle the Proceed button click
     public void OnProceed()
     {
+        bookAlbumCanvas.SetActive(true);
         // Hide the correct answer panel when proceeding
         if (correctAnswerPanel != null)
         {
@@ -564,6 +571,7 @@ public class PuzzleSystem : MonoBehaviour
         {
             dialogueSystem.ResetDialogue(); // Reset the dialogue state
         }
+       
     }
 
 
@@ -583,6 +591,7 @@ public class PuzzleSystem : MonoBehaviour
         DisplayAlbumWords();    // Display the words in the album
         correctAnswerPanel.SetActive(false);
         albumPanel.SetActive(true);
+        bookAlbumCanvas.SetActive(true);
     }
     public void ProceedButtonIG() {
         albumPanel.SetActive(false);

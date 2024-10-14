@@ -10,7 +10,7 @@ public class mainMenu : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     public void settingsBTN() {
-        
+        SceneManager.LoadScene(13);
     }
     public void albumBTN() {
         SceneManager.LoadScene(12);
@@ -19,6 +19,9 @@ public class mainMenu : MonoBehaviour
         
     }
     public void closeAlbum() {
+        SceneManager.LoadScene(1);
+    }
+    public void backBTN() {
         SceneManager.LoadScene(1);
     }
 }

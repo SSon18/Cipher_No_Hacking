@@ -12,6 +12,7 @@ public class Giovanni : MonoBehaviour
 {
     // UI Components
     [SerializeField] public GameObject cipherPuzzleCanvas;
+    [SerializeField] public GameObject bookAlbumCanvas;
     [SerializeField] private TMP_Text ciphertextText;
     [SerializeField] public TMP_InputField answerInputField;
     [SerializeField] public TMP_Text feedbackText;
@@ -242,6 +243,7 @@ public class Giovanni : MonoBehaviour
         if (!puzzleSolved)
         {
             cipherPuzzleCanvas.SetActive(true);
+            bookAlbumCanvas.SetActive(false);
             timer = timeLimit;
             timerRunning = true;
             answerInputField.interactable = true;
@@ -251,6 +253,7 @@ public class Giovanni : MonoBehaviour
             playerMovementScript.enabled = false;
             playerMovementScript.speed = 0;
             cameraControlScript.enabled = false;
+
             DisplayMissionText();
         }
     }
@@ -366,6 +369,7 @@ public class Giovanni : MonoBehaviour
             SavePuzzleState(); // Save the puzzle state after solving
             timerRunning = false; // Stop the timer
             cipherPuzzleCanvas.SetActive(false); // Hide the puzzle canvas
+            bookAlbumCanvas.SetActive(true);
 
             // Disable the collider after the puzzle is solved
             if (puzzleCollider != null)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f850dc0769dea8a468d97841ee9e8244
+guid: 0bd39b54c4299634b8a71ee5fa7bb1ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,101 +93,69 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walls_far_0
+      name: Aged Book Asset Sheet_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 304
-        width: 57
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 750295593fd1d574d859a0814c45b1a1
-      internalID: 1577271669
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_far_1
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 464
-        width: 54
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38d3ffeba4aedeb47b8a617024bd2751
-      internalID: -242455836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_far_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 463
-        width: 51
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0178cb4d994057b46b0c135dcb582148
-      internalID: -2113383781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_far_3
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 367
-        width: 10
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 777d76396dc34da4e81d3de5febc759a
-      internalID: -1980486108
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_far_4
-      rect:
-        serializedVersion: 2
-        x: 301
-        y: 254
-        width: 134
-        height: 147
+        x: 251
+        y: 10839
+        width: 837
+        height: 902
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af7ce327e654a2a409e6fd2cf5a52040
-      internalID: 719466451
+      spriteID: 301213a2a828c5240b8c6909ee53cf30
+      internalID: -318338485
       vertices: []
       indices: 
       edges: []
@@ -212,11 +180,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walls_far_0: 1577271669
-      walls_far_1: -242455836
-      walls_far_2: -2113383781
-      walls_far_3: -1980486108
-      walls_far_4: 719466451
+      Aged Book Asset Sheet_0: -318338485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
