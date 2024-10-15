@@ -13769,7 +13769,7 @@ PrefabInstance:
     - target: {fileID: 9119360324747931831, guid: 08fd9f7318a90e3438be9455fed4db38,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: 36.54
       objectReference: {fileID: 0}
     - target: {fileID: 9119360324747931831, guid: 08fd9f7318a90e3438be9455fed4db38,
         type: 3}
@@ -13903,6 +13903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KeywordPuzzleHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017769003696770882, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5153864890568538468, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
@@ -14126,9 +14131,14 @@ PrefabInstance:
       objectReference: {fileID: 270348474}
     - target: {fileID: 4457869204143079192, guid: 40f85db19cb45b34e9668dfe0432c299,
         type: 3}
+      propertyPath: nextLevelDoor
+      value: 
+      objectReference: {fileID: 1980028056}
+    - target: {fileID: 4457869204143079192, guid: 40f85db19cb45b34e9668dfe0432c299,
+        type: 3}
       propertyPath: playerMovement
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1790540841}
     - target: {fileID: 4457869204143079192, guid: 40f85db19cb45b34e9668dfe0432c299,
         type: 3}
       propertyPath: portraitImage2
@@ -14324,7 +14334,6 @@ SceneRoots:
   - {fileID: 2098807892}
   - {fileID: 1429503660}
   - {fileID: 456496708321387853}
-  - {fileID: 3036951521355546450}
   - {fileID: 8284086107825696465}
   - {fileID: 1100036654}
   - {fileID: 1128574269}
@@ -14332,3 +14341,4 @@ SceneRoots:
   - {fileID: 1889721314}
   - {fileID: 582607528}
   - {fileID: 738890746}
+  - {fileID: 3036951521355546450}

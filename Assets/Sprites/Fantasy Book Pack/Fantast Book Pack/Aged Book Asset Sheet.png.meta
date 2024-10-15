@@ -157,7 +157,7 @@ TextureImporter:
         width: 837
         height: 902
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,6 +165,321 @@ TextureImporter:
       bones: []
       spriteID: 301213a2a828c5240b8c6909ee53cf30
       internalID: -318338485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 6551
+        y: 10712
+        width: 1007
+        height: 1207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac00ffda70069de4d879030cf0a6ed17
+      internalID: -1766818285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 6821
+        y: 6726
+        width: 492
+        height: 972
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96973e6891a8b524bb4a27f19e8b9a08
+      internalID: -626799662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 5575
+        y: 6565
+        width: 531
+        height: 1253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0a507d915332b4aa94aaf5a3276778
+      internalID: 1996914931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 4160
+        y: 6727
+        width: 775
+        height: 1036
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2db0317a5dcd3a49842fbf5505a21be
+      internalID: 1409779928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2718
+        y: 6709
+        width: 964
+        height: 1027
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e5bead182699d47b8277d6379e241c
+      internalID: -848552670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 6736
+        width: 919
+        height: 982
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ca46409302dea47a1d4fa56a2fb672
+      internalID: -342787493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 6529
+        width: 703
+        height: 1298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b88ff4a2601da644af9c58c48a7c76c
+      internalID: 542851575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 8080
+        y: 6682
+        width: 387
+        height: 1127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e3c3b4b03b72e49b33c3c6b13991bb
+      internalID: -668076124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 5574
+        width: 782
+        height: 627
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb3a026895deb5428a38c49f99a7311
+      internalID: 1921364166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 5628
+        width: 1054
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365e3834e08f2b44694761031650dd11
+      internalID: 2080175974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2780
+        y: 5501
+        width: 763
+        height: 754
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a66a255576a0137498841e56f58882f6
+      internalID: -1929153801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 4052
+        y: 5456
+        width: 936
+        height: 808
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbbabd712f56e1b4cba5f0871bc08817
+      internalID: -1972153722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 5351
+        y: 5574
+        width: 800
+        height: 690
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296392363678c5742b0a4300f87d4593
+      internalID: -2003328620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 6687
+        y: 5519
+        width: 627
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17aeb0bd5931e294e9f8335f01005edf
+      internalID: -1990820082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aged Book Asset Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 7813
+        y: 5492
+        width: 945
+        height: 863
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47948e34b1a54894abb07ec3eafdfc62
+      internalID: -966467045
       vertices: []
       indices: 
       edges: []
@@ -181,6 +496,21 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Aged Book Asset Sheet_0: -318338485
+      Aged Book Asset Sheet_1: -1766818285
+      Aged Book Asset Sheet_10: 2080175974
+      Aged Book Asset Sheet_11: -1929153801
+      Aged Book Asset Sheet_12: -1972153722
+      Aged Book Asset Sheet_13: -2003328620
+      Aged Book Asset Sheet_14: -1990820082
+      Aged Book Asset Sheet_15: -966467045
+      Aged Book Asset Sheet_2: -626799662
+      Aged Book Asset Sheet_3: 1996914931
+      Aged Book Asset Sheet_4: 1409779928
+      Aged Book Asset Sheet_5: -848552670
+      Aged Book Asset Sheet_6: -342787493
+      Aged Book Asset Sheet_7: 542851575
+      Aged Book Asset Sheet_8: -668076124
+      Aged Book Asset Sheet_9: 1921364166
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

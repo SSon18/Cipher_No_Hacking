@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
 
         // Load the first scene (usually index 0)
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(6);
 
         // Reset any other data such as puzzle completion
         completedPuzzleIndices.Clear();

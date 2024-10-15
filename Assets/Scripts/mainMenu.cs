@@ -10,10 +10,10 @@ public class mainMenu : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     public void settingsBTN() {
-        SceneManager.LoadScene(13);
+        SceneManager.LoadScene(5);
     }
     public void albumBTN() {
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene(4);
     }
     public void tutorialBTN() { 
         
