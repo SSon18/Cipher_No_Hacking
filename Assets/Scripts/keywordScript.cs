@@ -9,6 +9,7 @@ public class KeywordCipherSystem : MonoBehaviour
 {
     // UI Components
     [SerializeField] public GameObject keywordPuzzleCanvas; // The canvas for the keyword puzzle
+    [SerializeField] public GameObject bookAlbumCanvas;
     [SerializeField] private TMP_Text ciphertextText; // Text display for the keyword ciphertext
     [SerializeField] public TMP_InputField answerInputField; // Input field for user's answer
     [SerializeField] public TMP_Text feedbackText; // Feedback display text
@@ -225,6 +226,7 @@ public class KeywordCipherSystem : MonoBehaviour
         DisplayAlbumWords();    // Display the words in the album
 
         correctAnswerPanel.SetActive(false);
+        bookAlbumCanvas.SetActive(true);
         albumPanel.SetActive(true);
 
         // Refresh the album to ensure the latest deciphered word is displayed
@@ -369,6 +371,7 @@ public class KeywordCipherSystem : MonoBehaviour
         if (!puzzleSolved)
         {
             keywordPuzzleCanvas.SetActive(true);
+            bookAlbumCanvas.SetActive(false);
             timer = timeLimit;
             timerRunning = true;
             answerInputField.interactable = true;
@@ -468,6 +471,7 @@ public class KeywordCipherSystem : MonoBehaviour
             feedbackText.text = "Correct!";
             ShowCorrectAnswerPanel(currentPlaintext);
             keywordPuzzleCanvas.SetActive(false);
+            bookAlbumCanvas.SetActive(true);
             EnableNextLevelDoorTrigger();
 
             // Handle deciphered words
@@ -542,9 +546,11 @@ public class KeywordCipherSystem : MonoBehaviour
 
     private void ShowCorrectAnswerPanel(string word)
     {
+        bookAlbumCanvas.SetActive(false);
         correctAnswerWordText.text = "Deciphered Word: " + word;
         correctAnswerDescriptionText.text = plaintextDescriptions[word];
         correctAnswerPanel.SetActive(true);
+        
     }
 
     private void ResetPuzzle()
@@ -563,6 +569,7 @@ public class KeywordCipherSystem : MonoBehaviour
     public void OnProceed()
     {
         correctAnswerPanel.SetActive(false);
+        bookAlbumCanvas.SetActive(true);
         playerMovementScript.enabled = true;
         puzzleSolved = false;
         dialogueSystem.ResetDialogue();

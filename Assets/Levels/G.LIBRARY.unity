@@ -4558,6 +4558,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 222124980434485485, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222124980434485485, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222124980434485485, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222124980434485485, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222124980434485485, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287194097035249984, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474220442500664588, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037906412096841980, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -240
+      objectReference: {fileID: 0}
     - target: {fileID: 1712393086065271576, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4593,6 +4633,41 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3172731351476312549, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172731351476312549, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172731351476312549, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172731351476312549, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172731351476312549, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344375839020739961, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -399.6621
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344375839020739961, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 110.168945
+      objectReference: {fileID: 0}
     - target: {fileID: 4122770070987554008, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
       propertyPath: m_IsActive
@@ -4617,6 +4692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531582298928998461, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4739339473223174193, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
@@ -4673,6 +4753,27 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 5857606856622405505, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: speaker.Array.data[0]
+      value: Keyword Cipher Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857606856622405505, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: portrait.Array.data[0]
+      value: 
+      objectReference: {fileID: 1338966917, guid: 0bd39b54c4299634b8a71ee5fa7bb1ca,
+        type: 3}
+    - target: {fileID: 5857606856622405505, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: dialogueWords.Array.data[0]
+      value: You have found the keyword cipher book! Decipher the given text to proceed!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195544050209296438, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 246
+      objectReference: {fileID: 0}
     - target: {fileID: 6318912265442749618, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4725,6 +4826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
+      propertyPath: keyword
+      value: MATH
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
       propertyPath: interactable
       value: 
       objectReference: {fileID: 1019889007}
@@ -4740,6 +4846,11 @@ PrefabInstance:
       objectReference: {fileID: 315432688}
     - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
+      propertyPath: bookAlbumCanvas
+      value: 
+      objectReference: {fileID: 347204584}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 2048519151}
@@ -4750,13 +4861,69 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
+      propertyPath: descriptions.Array.data[0]
+      value: 'A cyberattack is any intentional effort to steal, expose, alter, disable,
+        or destroy data, applications, or other assets through unauthorized access
+        to a network, computer system or digital device. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: descriptions.Array.data[1]
+      value: Phishing is the practice of sending fraudulent communications that appear
+        to come from a legitimate and reputable source, usually through email and
+        text messaging.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: descriptions.Array.data[2]
+      value: A backdoor is a potential security risk. An undocumented way of gaining
+        access to a computer system.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: descriptions.Array.data[3]
+      value: An exploit (in its noun form) is a segment of code or a program that
+        maliciously takes advantage of vulnerabilities or security flaws in software
+        or hardware to infiltrate and initiate a denial-of-service (DoS) attack or
+        install malware, such as spyware, ransomware, Trojan horses, worms, or viruses.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: descriptions.Array.data[4]
+      value: A cyber security threat is a type of threat that targets computer networks,
+        systems, and user data. These threats can come in the form of malware, phishing,
+        and other malicious activity. This page provides a guide to the most common
+        types of cyber security threat, cyber attacks, and vulnerabilities.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
       propertyPath: missionWords.Array.data[0]
       value: 'Decipher the given text!
 
         Hint: Keyword Cipher
 
         Keyword:
-        TEST'
+        MATH'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: possiblePlaintexts.Array.data[1]
+      value: PHISING
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: possiblePlaintexts.Array.data[2]
+      value: BACKDOOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: possiblePlaintexts.Array.data[3]
+      value: EXPLOIT
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399735480147171359, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: possiblePlaintexts.Array.data[4]
+      value: THREATS
       objectReference: {fileID: 0}
     - target: {fileID: 6460506438625841201, guid: d0abe1a9ad40d984794e0f63a116d709,
         type: 3}
@@ -4812,6 +4979,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430633643529736713, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 324.6044
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430633643529736713, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 324.6036
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430633643529736713, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430633643529736713, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494572360103280588, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494572360103280588, guid: d0abe1a9ad40d984794e0f63a116d709,
+        type: 3}
+      propertyPath: m_margin.w
+      value: 7.430664
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5729,6 +5926,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &347204584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 978717679490302129, guid: d2f3e1cef1915ec428f7758020d31473,
+    type: 3}
+  m_PrefabInstance: {fileID: 1393730858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &351487163
 GameObject:
   m_ObjectHideFlags: 0
@@ -24128,6 +24331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292485985920542402, guid: d2f3e1cef1915ec428f7758020d31473,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8918605575714039190, guid: d2f3e1cef1915ec428f7758020d31473,
         type: 3}

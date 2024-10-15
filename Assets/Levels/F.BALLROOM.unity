@@ -37500,6 +37500,16 @@ PrefabInstance:
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 32718765}
+    - target: {fileID: 4256899567409330328, guid: cd89c6c549ad74c4fb82ff837a3d053a,
+        type: 3}
+      propertyPath: missionWords.Array.data[0]
+      value: 'Decipher the given text using Caesar Cipher!
+
+        Hint: Caesar
+        Cipher
+
+        Shift: 4'
+      objectReference: {fileID: 0}
     - target: {fileID: 5652966358353890397, guid: cd89c6c549ad74c4fb82ff837a3d053a,
         type: 3}
       propertyPath: m_Name

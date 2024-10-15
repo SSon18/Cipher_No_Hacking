@@ -11965,7 +11965,7 @@ PrefabInstance:
     - target: {fileID: 1414365271971269440, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
       propertyPath: m_Name
-      value: giovanniPuzzleSystem
+      value: giovanniPuzzleSystem 2
       objectReference: {fileID: 0}
     - target: {fileID: 1414365271971269440, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -11980,7 +11980,7 @@ PrefabInstance:
     - target: {fileID: 1935197597170391013, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
       propertyPath: m_Name
-      value: giovanniDialogue 1
+      value: giovanniDialogue 2
       objectReference: {fileID: 0}
     - target: {fileID: 2255390658025095489, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -11996,6 +11996,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Giovanni, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935142374796931826, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 259
       objectReference: {fileID: 0}
     - target: {fileID: 3153525741405121150, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -12014,13 +12019,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
+      propertyPath: keyword
+      value: HACK
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
       propertyPath: particle
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
       propertyPath: keyLetter
-      value: 70
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -12086,12 +12096,28 @@ PrefabInstance:
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
       propertyPath: descriptions.Array.data[0]
-      value: ADWARE DESC
+      value: Adware (or advertising software) is the term used for various pop-up
+        advertisements that show up on your computer or mobile device. Adware has
+        the potential to become malicious and harm your device by slowing it down,
+        hijacking your browser and installing viruses and/or spyware.
       objectReference: {fileID: 0}
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
       propertyPath: descriptions.Array.data[1]
-      value: HACKER DESC
+      value: 'A hacker is a person who breaks into a computer system. The reasons
+        for hacking can be many: installing malware, stealing or destroying data,
+        disrupting service, and more. Hacking can also be done for ethical reasons,
+        such as trying to find software vulnerabilities so they can be fixed.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: missionWords.Array.data[0]
+      value: 'Mission: Decipher the given text using Giovanni''s Method!
+
+        Keyword
+        : HACK
+
+        KeyLetter: E'
       objectReference: {fileID: 0}
     - target: {fileID: 5302370352560270023, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -12112,6 +12138,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555290280318668896, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -14.28772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555290280318668896, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 22.538452
       objectReference: {fileID: 0}
     - target: {fileID: 6368018170402570894, guid: c6e414bdf77520e4a9b9b287831acfb1,
         type: 3}
@@ -12147,6 +12183,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563887107548561458, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: speaker.Array.data[0]
+      value: Giovanni Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563887107548561458, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: portrait.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d046650ae9b1d4e4c96f5a0b04c39278,
+        type: 3}
+    - target: {fileID: 8563887107548561458, guid: c6e414bdf77520e4a9b9b287831acfb1,
+        type: 3}
+      propertyPath: dialogueWords.Array.data[0]
+      value: Dialogue Test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
