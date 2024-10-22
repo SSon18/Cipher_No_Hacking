@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PureDialogue : MonoBehaviour
@@ -32,27 +32,48 @@ public class PureDialogue : MonoBehaviour
 
     private bool dialogueActivated2;
     private int step;
-    private bool isDisplaying; // New flag to check if displaying dialogue
+    private bool isDisplaying;
 
     // Reference to PlayerMovement and Animator
     [SerializeField]
-    private NewBehaviourScript playerMovement; // Reference to your PlayerMovement script
+    private NewBehaviourScript playerMovement;
 
-    private Animator playerAnimator; // Reference to the player's Animator
+    private Animator playerAnimator;
     private SpriteRenderer notifRenderer;
     private GameObject notif;
+
     [SerializeField]
     private GameObject interactable;
+
     [SerializeField]
     private GameObject nextLevelDoor; // Object for the door leading to the next level
-    private SpriteRenderer doorSpriteRenderer; // Declare a SpriteRenderer reference
+    private BoxCollider2D doorCollider;
+    private SpriteRenderer doorSpriteRenderer;
+
+    private string doorSaveKey;
+
     private void Start()
     {
+        notifRenderer = interactable.GetComponent<SpriteRenderer>();
+        if (notifRenderer != null)
+        {
+            notifRenderer.enabled = false; // Hide the sprite initially
+        }
+
+        doorCollider = nextLevelDoor.GetComponent<BoxCollider2D>();
         doorSpriteRenderer = nextLevelDoor.GetComponent<SpriteRenderer>();
+
         if (doorSpriteRenderer != null)
         {
             doorSpriteRenderer.enabled = false; // Hide the sprite initially
         }
+
+        // Generate a unique key based on the door's name for saving its state
+        doorSaveKey = nextLevelDoor.name + "_isTrigger";
+
+        // Load the door's state
+        LoadDoorState();
+
         // Set up initial UI states
         dialogueCanvas2.SetActive(false);
 
@@ -62,96 +83,99 @@ public class PureDialogue : MonoBehaviour
             playerAnimator = playerMovement.GetComponent<Animator>();
         }
     }
- 
+
     private void Update()
     {
-        if (Input.GetButtonDown("Talk") && dialogueActivated2 && !isDisplaying) // Check if not displaying
+        if (Input.GetButtonDown("Talk") && dialogueActivated2 && !isDisplaying)
         {
-            if (step >= speaker2.Length) // Check if dialogue is over
-            {            
+            if (step >= speaker2.Length)
+            {
                 dialogueCanvas2.SetActive(false);
-                step = 0; // Optionally reset dialogue to start from the beginning
-                dialogueActivated2 = false; // Optionally disable dialogue activation
-                notifRenderer = interactable.GetComponent<SpriteRenderer>();
-                if (notifRenderer != null)
-                {
-                    notifRenderer.enabled = false; // Hide the sprite initially
-                }
+                step = 0;
+                dialogueActivated2 = false;
+
+                notifRenderer.enabled = false;
+
                 // Re-enable player movement and animation
                 if (playerMovement != null)
                 {
                     playerMovement.enabled = true;
                 }
+
                 if (playerAnimator != null)
                 {
-                    playerAnimator.SetBool("run", true); // Re-enable running animation
+                    playerAnimator.SetBool("run", true);
                 }
+
                 EnableNextLevelDoorTrigger();
             }
             else
             {
                 dialogueCanvas2.SetActive(true);
                 speakerText2.text = speaker2[step];
-                StartCoroutine(DisplayDialogue(dialogueWords2[step])); // Start letter-by-letter display
+                StartCoroutine(DisplayDialogue(dialogueWords2[step]));
                 portraitImage2.sprite = portrait2[step];
                 step++;
+                playerMovement.enabled = false;
+                playerMovement.body.velocity = Vector2.zero;
             }
         }
     }
+
     public void EnableNextLevelDoorTrigger()
     {
-        // Enable the next level door trigger
-        if (nextLevelDoor != null)
+        if (doorCollider != null)
         {
-            BoxCollider2D doorCollider = nextLevelDoor.GetComponent<BoxCollider2D>(); // Get the door's collider
+            doorCollider.isTrigger = true; // Enable door trigger
 
-            if (doorCollider != null)
+            // Enable the SpriteRenderer to show the door
+            if (doorSpriteRenderer != null)
             {
-                doorCollider.isTrigger = true; // Ensure the collider is a trigger
-                Debug.Log("nextLevelDoor collider enabled and set as trigger."); // Log success
+                doorSpriteRenderer.enabled = true;
+            }
 
-                // Enable the SpriteRenderer to show the sprite
-                if (doorSpriteRenderer != null)
-                {
-                    doorSpriteRenderer.enabled = true; // Show the sprite
-                    Debug.Log("nextLevelDoor sprite renderer enabled."); // Log success
-                }
-                else
-                {
-                    Debug.LogWarning("No SpriteRenderer found on nextLevelDoor."); // Log warning if no SpriteRenderer
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No BoxCollider2D found on nextLevelDoor."); // Log warning if no collider
-            }
+            // Save the door's state
+            PlayerPrefs.SetInt(doorSaveKey, doorCollider.isTrigger ? 1 : 0);
+            PlayerPrefs.Save();
         }
-        else
+    }
+
+    private void LoadDoorState()
+    {
+        if (doorCollider != null)
         {
-            Debug.LogWarning("nextLevelDoor reference is missing."); // Log warning if door reference is missing
+            // Load the saved state for the door's trigger
+            bool isTrigger = PlayerPrefs.GetInt(doorSaveKey, 0) == 1;
+            doorCollider.isTrigger = isTrigger;
+
+            // Show or hide the door based on the saved state
+            if (doorSpriteRenderer != null)
+            {
+                doorSpriteRenderer.enabled = isTrigger;
+            }
         }
     }
 
     private IEnumerator DisplayDialogue(string dialogue)
     {
-        isDisplaying = true; // Set the flag to true when starting the display
-        dialogueText2.text = ""; // Clear previous text
+        isDisplaying = true;
+        dialogueText2.text = "";
 
         foreach (char letter in dialogue)
         {
-            dialogueText2.text += letter; // Add one letter at a time
-            yield return new WaitForSeconds(0.05f); // Adjust the speed here (0.05 seconds per letter)
+            dialogueText2.text += letter;
+            yield return new WaitForSeconds(0.02f);
         }
 
-        isDisplaying = false; // Set the flag to false when finished displaying
+        isDisplaying = false;
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-           
             dialogueActivated2 = true;
+            notifRenderer.enabled = true;
         }
     }
 
@@ -159,14 +183,19 @@ public class PureDialogue : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            
-            // Check if the dialogueCanvas2 object still exists before accessing it
             if (dialogueCanvas2 != null && dialogueCanvas2.activeInHierarchy)
             {
                 dialogueCanvas2.SetActive(false);
             }
             dialogueActivated2 = false;
             step = 0;
+            notifRenderer.enabled = false;
         }
+    }
+
+    public void closeDialogueBTN()
+    {
+        dialogueCanvas2.SetActive(false);
+        playerMovement.enabled = true;
     }
 }

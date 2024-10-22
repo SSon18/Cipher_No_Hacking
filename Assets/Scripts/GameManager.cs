@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     // Reference to the player object
     [SerializeField] private GameObject player;
+    [SerializeField] GameObject popUpCanvas;
 
     // Call this method to save the game progress
     public void SaveProgress()
@@ -52,8 +53,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            popUpCanvas.SetActive(true);
             Debug.Log("No saved progress found.");
         }
+    }
+
+    public void backBTN() {
+        popUpCanvas.SetActive(false);
     }
 
     public void NewGame()

@@ -38,6 +38,8 @@ public class DialogueSystem : MonoBehaviour
     // Reference to the Puzzle System
     [SerializeField]
     private PuzzleSystem puzzleSystem;
+
+    [SerializeField ]private NewBehaviourScript playerMovement;
  
     private void Start()
     {
@@ -81,6 +83,8 @@ public class DialogueSystem : MonoBehaviour
             else
             {
                 dialogueCanvas.SetActive(true);
+                playerMovement.enabled = false;
+                playerMovement.body.velocity = Vector2.zero;
                 speakerText.text = speaker[step];
                 StartCoroutine(DisplayDialogue(dialogueWords[step])); // Start letter-by-letter display
                 portraitImage.sprite = portrait[step];
@@ -101,7 +105,7 @@ public class DialogueSystem : MonoBehaviour
         foreach (char letter in dialogue)
         {
             dialogueText.text += letter; // Add one letter at a time
-            yield return new WaitForSeconds(0.05f); // Adjust the speed here (0.05 seconds per letter)
+            yield return new WaitForSeconds(0.02f); // Adjust the speed here (0.05 seconds per letter)
         }
 
         isDisplaying = false; // Set the flag to false when finished displaying
@@ -113,6 +117,7 @@ public class DialogueSystem : MonoBehaviour
             dialogueActivated = true; // Activate dialogue when entering the collider
             puzzleSystem.bookAlbumCanvas.SetActive(false);
             Debug.Log("Player entered the dialogue trigger zone.");
+            
         }
     }
 

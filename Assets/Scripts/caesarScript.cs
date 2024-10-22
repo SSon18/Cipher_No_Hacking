@@ -259,11 +259,6 @@ public class PuzzleSystem : MonoBehaviour
         // Save the updated puzzle state and door state
         SavePuzzleState(); // Call save after updating states
     }
-
-
-
-
-
     private void Update()
     {
         // Update the timer if it's running
@@ -315,7 +310,6 @@ public class PuzzleSystem : MonoBehaviour
         // Update UI to display the new ciphertext
         ciphertextText.text = "Ciphertext: " + ciphertext;
     }
-
     public void ActivatePuzzle()
     {
         // Activate the puzzle if it has not been solved
@@ -334,12 +328,11 @@ public class PuzzleSystem : MonoBehaviour
             answerInputField.Select(); // Select the input field
             answerInputField.ActivateInputField(); // Activate the input field for user input
             playerMovementScript.enabled = false; // Disable player movement
+            playerMovementScript.body.velocity = Vector2.zero;
             // Display mission text when the puzzle begins
             DisplayMissionText(); // Show the mission text
         }
     }
-
-
 
     private void DisplayMissionText()
     {
@@ -396,7 +389,6 @@ public class PuzzleSystem : MonoBehaviour
         }
     }
 
-
     public void EnableNextLevelDoorTrigger()
     {
         // Enable the next level door trigger
@@ -415,19 +407,7 @@ public class PuzzleSystem : MonoBehaviour
                     doorSpriteRenderer.enabled = true; // Show the sprite
                     Debug.Log("nextLevelDoor sprite renderer enabled."); // Log success
                 }
-                else
-                {
-                    Debug.LogWarning("No SpriteRenderer found on nextLevelDoor."); // Log warning if no SpriteRenderer
-                }
             }
-            else
-            {
-                Debug.LogWarning("No BoxCollider2D found on nextLevelDoor."); // Log warning if no collider
-            }
-        }
-        else
-        {
-            Debug.LogWarning("nextLevelDoor reference is missing."); // Log warning if door reference is missing
         }
     }
 
@@ -504,7 +484,6 @@ public class PuzzleSystem : MonoBehaviour
         Correct,
         Incorrect
     }
-
     private void DisplayFeedback(FeedbackMessage message)
     {
         switch (message)
@@ -516,6 +495,17 @@ public class PuzzleSystem : MonoBehaviour
                 feedbackText.text = "Try again!";
                 break;
         }
+    }
+    
+    public void closePuzzlePanel()
+    {
+        RandomizePlaintext();
+        puzzleCanvas.SetActive(false);
+        bookAlbumCanvas.SetActive(true);
+        playerMovementScript.enabled = true;
+        answerInputField.text = "";
+        feedbackText.text = "";
+        
     }
 
     private void UpdateTimerDisplay()

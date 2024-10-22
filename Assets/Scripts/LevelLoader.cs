@@ -21,14 +21,31 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    public void NextLevel() {
-        StartCoroutine(LoadLevel());
+    // Method to go to the next level
+    public void NextLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel() {
+    // Method to go to the previous level
+    public void PreviousLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
+    }
+
+    // Coroutine to load a scene with transition animation
+    IEnumerator LoadLevel(int sceneIndex)
+    {
+        // Start the transition animation
         transitionAnim.SetTrigger("End");
-        yield return new WaitForSeconds(0);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        // Wait for the animation or a delay if needed
+        yield return new WaitForSeconds(0.2f);  // Adjust time based on your transition animation length
+
+        // Load the requested scene
+        SceneManager.LoadSceneAsync(sceneIndex);
+
+        // Trigger animation for entering the scene
         transitionAnim.SetTrigger("Start");
     }
 }

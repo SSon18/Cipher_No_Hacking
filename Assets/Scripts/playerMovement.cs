@@ -3,7 +3,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] public float speed;
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     private Animator anim;
     private bool grounded;
 
